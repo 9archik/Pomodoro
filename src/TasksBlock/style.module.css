@@ -1,0 +1,73 @@
+.root {
+    padding: 10px;
+    width: 25%;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 700;
+}
+.headerButtons {
+    position: relative;
+}
+.headerButtons > button {
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+    font-weight: 700;
+    background-color: rgba(0, 89, 221, 0.088);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+}
+
+.headerButtons > button > svg {
+    margin: 0;
+}
+
+.headerButtons > .popup {
+    position: absolute;
+    right: 0;
+    width: 220px;
+    box-sizing: border-box;
+    -webkit-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.28);
+    box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.28);
+    border-radius: 10px;
+    margin: 7px;
+    display: block;
+    z-index: 100;
+    background-color: white;
+}
+
+.headerButtons > .popupClose {
+    display: none;
+}
+
+.headerButtons > .popup svg {
+    width: 21px;
+    height: 21px;
+    margin: 0 7px 0 0;
+}
+
+
+.headerButtons > .popup li {
+    display: flex;
+    width: 100%;
+    padding: 13px 10px;
+    cursor: pointer;
+}
+
+.headerButtons > .popup li:hover
+{
+        background-color: rgba(26, 153, 232, 0.095);
+        color: rgb(68, 56, 239);
+}
