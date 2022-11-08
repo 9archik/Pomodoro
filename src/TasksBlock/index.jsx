@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useState, useRef } from 'react';
 import styles from './style.module.css';
 const TasksBlock = () => {
 
     const[headerBtnsPopup, setHeaderBtnsPopup] = useState(false);
-
+    
+	
 	return (
 		<div className={styles.root}>
 			<div className={styles.header}>
@@ -91,51 +93,53 @@ const TasksBlock = () => {
 			</div>
 
 			<ul className={styles.taskList}>
-				<li className={styles.taskItem}>
-					<input className="task-item__custom-checkbox" type="checkbox" id="1" />
-					<label for="1">Label</label>
+				<li >
+					<div className={styles.taskItem}>
+						<input type="checkbox" id="1" />
+						<label for="1">Label</label>
 
-					<div className={styles.taskItemBtns}>
-						<button className={styles.delete}>
-							<svg
-								data-v-e06fc954=""
-								aria-hidden="true"
-								focusable="false"
-								data-prefix="fas"
-								data-icon="trash"
-								role="img"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 448 512"
-								class="text-lg mr-3 pointer-events-none svg-inline--fa fa-trash fa-w-14">
-								<path
+						<div className={styles.taskItemBtns}>
+							<button className={styles.delete}>
+								<svg
 									data-v-e06fc954=""
-									fill="currentColor"
-									d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
-									class=""></path>
-							</svg>
-						</button>
-						<button className={styles.edit}>
-							<svg
-								data-v-e06fc954=""
-								aria-hidden="true"
-								focusable="false"
-								data-prefix="fas"
-								data-icon="pen"
-								role="img"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 512 512"
-								class="text-lg mr-3 pointer-events-none svg-inline--fa fa-pen fa-w-16">
-								<path
+									aria-hidden="true"
+									focusable="false"
+									data-prefix="fas"
+									data-icon="trash"
+									role="img"
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 448 512"
+									class="text-lg mr-3 pointer-events-none svg-inline--fa fa-trash fa-w-14">
+									<path
+										data-v-e06fc954=""
+										fill="currentColor"
+										d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+										class=""></path>
+								</svg>
+							</button>
+							<button className={styles.edit}>
+								<svg
 									data-v-e06fc954=""
-									fill="currentColor"
-									d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"
-									class=""></path>
-							</svg>
-						</button>
+									aria-hidden="true"
+									focusable="false"
+									data-prefix="fas"
+									data-icon="pen"
+									role="img"
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 512 512"
+									class="text-lg mr-3 pointer-events-none svg-inline--fa fa-pen fa-w-16">
+									<path
+										data-v-e06fc954=""
+										fill="currentColor"
+										d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"
+										class=""></path>
+								</svg>
+							</button>
+						</div>
 					</div>
 
 					<div className={styles.taskItemInput}>
-						<input type="text" />
+						<textarea ref='input' type="text" />
 						<div>
 							<button>Save</button>
 							<button>Cancel</button>
