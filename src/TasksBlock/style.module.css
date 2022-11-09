@@ -133,11 +133,12 @@ h3 {
     word-break: break-all;
 }
 
+
 .taskItemBtns {
     display: flex;
     position: absolute;
     right: 10px;
-    z-index: 100;
+    z-index: 10;
     top: 49%;
     transform: translate(0, -50%);
     opacity: 0;
@@ -178,6 +179,7 @@ h3 {
     border: 1px solid rgba(0, 0, 0, 0.253);
     padding: 12px 5px;
     border-radius: 10px;
+    margin: 0 0 12px 0;
 }
 
 .inputForm {
@@ -232,4 +234,9 @@ h3 {
 }
 .addTask i {
     margin: 0 7px 0 0;
+}
+
+.isAdd
+{
+    display:none;
 }
