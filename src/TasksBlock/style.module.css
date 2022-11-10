@@ -43,7 +43,7 @@ h3 {
     -moz-box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.28);
     box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.28);
     border-radius: 10px;
-    margin: 7px;
+    margin: 14px 0 0 0;
     display: block;
     z-index: 100;
     background-color: white;
@@ -91,6 +91,24 @@ h3 {
     -webkit-box-shadow: 4px 4px 11px -1px rgba(0, 0, 0, 0.11);
     -moz-box-shadow: 4px 4px 11px -1px rgba(0, 0, 0, 0.11);
     box-shadow: 4px 4px 11px -1px rgba(0, 0, 0, 0.11);
+    transition: 0.2s;
+}
+
+.taskItemChecked {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 0 0 12px 0;
+    border-radius: 14px;
+    border: 1px solid rgba(225, 225, 225, 0.618);
+    background-color: rgba(0, 0, 0, 0.054);
+    position: relative;
+    -webkit-box-shadow: 4px 4px 11px -1px rgba(0, 0, 0, 0.11);
+    -moz-box-shadow: 4px 4px 11px -1px rgba(0, 0, 0, 0.11);
+    box-shadow: 4px 4px 11px -1px rgba(0, 0, 0, 0.11);
+    transition: 0.2s;
 }
 
 .taskItem > input {
@@ -121,11 +139,11 @@ h3 {
     border-radius: 100%;
 }
 
-.taskItem > input:checked + label::before {
+/* .taskItem> input:checked + label::before {
     border-color: gray;
     background-color: gray;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
-}
+} */
 
 .taskItem > label {
     max-width: 100%;
@@ -133,6 +151,51 @@ h3 {
     word-break: break-all;
 }
 
+.taskItemChecked > label {
+    max-width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.taskItemChecked > input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.taskItemChecked > input + label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+
+.taskItemChecked > input + label::before {
+    content: "";
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #adb5bd;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+    border-radius: 100%;
+}
+
+.taskItemChecked > input:checked + label::before {
+    border-color: gray;
+    background-color: gray;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+.taskItemChecked > label {
+    max-width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+}
 
 .taskItemBtns {
     display: flex;
@@ -146,6 +209,12 @@ h3 {
 
 .taskItem:hover > .taskItemBtns {
     opacity: 1;
+    transition: 0.2s;
+}
+
+.taskItemChecked:hover > .taskItemBtns {
+    opacity: 1;
+    transition: 0.2s;
 }
 
 .taskItemBtns > button {
@@ -183,7 +252,7 @@ h3 {
 }
 
 .inputForm {
-    height: max-content;
+    min-height: 45px;
     width: 100%;
     border: none;
     padding: 5px;
@@ -217,10 +286,6 @@ h3 {
     background-color: rgb(0, 0, 210);
 }
 
-.isEdit {
-    display: none;
-}
-
 .addTask {
     padding: 17px 8px;
     border-radius: 10px;
@@ -236,7 +301,18 @@ h3 {
     margin: 0 7px 0 0;
 }
 
-.isAdd
-{
-    display:none;
+.isEdit {
+    display: none;
+}
+
+.labelChecked {
+    text-decoration: line-through;
+}
+.cancelBtn {
+    transition: 0.5s;
+}
+
+.cancelBtn:hover {
+    transition: 0.5s;
+    background-color: rgba(0, 89, 253, 0.163);
 }

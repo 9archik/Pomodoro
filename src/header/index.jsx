@@ -41,120 +41,132 @@ const Header = ({
 						</svg>
 						Customize
 					</button>
-					<ul className={customizeIsOpen ? styles.settings : styles.settingsIsOpen}>
-						<li onClick={() => setLevel(0)}>
-							<div className={styles.customCheckbox}>
-								<input checked={level === 0 ? 'yes' : ''} name="level" type="radio" id="baby" />
-								<span></span>
-							</div>
-
-							<label for="baby">
-								<div className={styles.level}>Baby step</div>
-								<div className={styles.time}>
-									<span>10 min</span> &#183; <span>5 min</span> &#183; <span>10 min</span>
+					{customizeIsOpen && (
+						<ul className={styles.settings}>
+							<li onClick={() => setLevel(0)}>
+								<div className={styles.customCheckbox}>
+									<input checked={level === 0 ? 'yes' : ''} name="level" type="radio" id="baby" />
+									<span></span>
 								</div>
-							</label>
-						</li>
 
-						<li onClick={() => setLevel(1)}>
-							<div className={styles.customCheckbox}>
-								<input checked={level === 1 ? 'yes' : ''} name="level" type="radio" id="popular" />
-								<span></span>
-							</div>
+								<label for="baby">
+									<div className={styles.level}>Baby step</div>
+									<div className={styles.time}>
+										<span>10 min</span> &#183; <span>5 min</span> &#183; <span>10 min</span>
+									</div>
+								</label>
+							</li>
 
-							<label for="popular">
-								<div className={styles.level}>Popular</div>
-								<div className={styles.time}>
-									<span>20 min</span> &#183; <span>5 min</span> &#183; <span>15 min</span>
+							<li onClick={() => setLevel(1)}>
+								<div className={styles.customCheckbox}>
+									<input
+										checked={level === 1 ? 'yes' : ''}
+										name="level"
+										type="radio"
+										id="popular"
+									/>
+									<span></span>
 								</div>
-							</label>
-						</li>
 
-						<li onClick={() => setLevel(2)}>
-							<div className={styles.customCheckbox}>
-								<input checked={level === 2 ? 'yes' : ''} name="level" type="radio" id="medium" />
-								<span></span>
-							</div>
+								<label for="popular">
+									<div className={styles.level}>Popular</div>
+									<div className={styles.time}>
+										<span>20 min</span> &#183; <span>5 min</span> &#183; <span>15 min</span>
+									</div>
+								</label>
+							</li>
 
-							<label for="medium">
-								<div className={styles.level}>Medium</div>
-								<div className={styles.time}>
-									<span>40 min</span> &#183; <span>8 min</span> &#183; <span>20 min</span>
+							<li onClick={() => setLevel(2)}>
+								<div className={styles.customCheckbox}>
+									<input checked={level === 2 ? 'yes' : ''} name="level" type="radio" id="medium" />
+									<span></span>
 								</div>
-							</label>
-						</li>
 
-						<li onClick={() => setLevel(3)}>
-							<div className={styles.customCheckbox}>
-								<input checked={level === 3 ? 'yes' : ''} name="level" type="radio" id="extended" />
-								<span></span>
-							</div>
-							<label for="extended">
-								<div className={styles.level}>Extended</div>
-								<div className={styles.time}>
-									<span>60 min</span> &#183; <span>10 min</span> &#183; <span>25 min</span>
+								<label for="medium">
+									<div className={styles.level}>Medium</div>
+									<div className={styles.time}>
+										<span>40 min</span> &#183; <span>8 min</span> &#183; <span>20 min</span>
+									</div>
+								</label>
+							</li>
+
+							<li onClick={() => setLevel(3)}>
+								<div className={styles.customCheckbox}>
+									<input
+										checked={level === 3 ? 'yes' : ''}
+										name="level"
+										type="radio"
+										id="extended"
+									/>
+									<span></span>
 								</div>
-							</label>
-						</li>
+								<label for="extended">
+									<div className={styles.level}>Extended</div>
+									<div className={styles.time}>
+										<span>60 min</span> &#183; <span>10 min</span> &#183; <span>25 min</span>
+									</div>
+								</label>
+							</li>
 
-						<li className={styles.customBlock}>
-							<div onClick={() => setLevel(4)} className={styles.customCheckbox}>
-								<input checked={level === 4 ? 'yes' : ''} name="level" type="radio" id="custom" />
-								<span></span>
-							</div>
-							<label for="" className={styles.custom}>
-								<div className={styles.level}>Custom</div>
-								<ul>
-									<li>
-										<div>
-											<span>{pomodoroValue} min</span> <span>Pomidoro</span>
-										</div>
-										<input
-											className={level === 4 ? '' : styles.sliderBlock}
-											type="range"
-											min="1"
-											max="100"
-											step="1"
-											value={pomodoroValue}
-											onChange={(events) => level === 4 && setPomodoroValue(events.target.value)}
-										/>
-									</li>
+							<li className={styles.customBlock}>
+								<div onClick={() => setLevel(4)} className={styles.customCheckbox}>
+									<input checked={level === 4 ? 'yes' : ''} name="level" type="radio" id="custom" />
+									<span></span>
+								</div>
+								<label for="" className={styles.custom}>
+									<div className={styles.level}>Custom</div>
+									<ul>
+										<li>
+											<div>
+												<span>{pomodoroValue} min</span> <span>Pomidoro</span>
+											</div>
+											<input
+												className={level === 4 ? '' : styles.sliderBlock}
+												type="range"
+												min="1"
+												max="100"
+												step="1"
+												value={pomodoroValue}
+												onChange={(events) => level === 4 && setPomodoroValue(events.target.value)}
+											/>
+										</li>
 
-									<li>
-										<div>
-											<span>{restValue} min</span> <span>Rest</span>
-										</div>
-										<input
-											className={level === 4 ? '' : styles.sliderBlock}
-											type="range"
-											min="1"
-											max="100"
-											step="1"
-											defaultValue="50"
-											value={restValue}
-											onChange={(events) => level === 4 && setRestValue(events.target.value)}
-										/>
-									</li>
+										<li>
+											<div>
+												<span>{restValue} min</span> <span>Rest</span>
+											</div>
+											<input
+												className={level === 4 ? '' : styles.sliderBlock}
+												type="range"
+												min="1"
+												max="100"
+												step="1"
+												defaultValue="50"
+												value={restValue}
+												onChange={(events) => level === 4 && setRestValue(events.target.value)}
+											/>
+										</li>
 
-									<li>
-										<div>
-											<span>{longRestValue} min</span> <span>Long rest</span>
-										</div>
-										<input
-											className={level === 4 ? '' : styles.sliderBlock}
-											type="range"
-											min="1"
-											max="100"
-											step="1"
-											defaultValue="50"
-											value={longRestValue}
-											onChange={(events) => level === 4 && setLongRestValue(events.target.value)}
-										/>
-									</li>
-								</ul>
-							</label>
-						</li>
-					</ul>
+										<li>
+											<div>
+												<span>{longRestValue} min</span> <span>Long rest</span>
+											</div>
+											<input
+												className={level === 4 ? '' : styles.sliderBlock}
+												type="range"
+												min="1"
+												max="100"
+												step="1"
+												defaultValue="50"
+												value={longRestValue}
+												onChange={(events) => level === 4 && setLongRestValue(events.target.value)}
+											/>
+										</li>
+									</ul>
+								</label>
+							</li>
+						</ul>
+					)}
 				</div>
 
 				<button className={styles.restart}>
