@@ -110,8 +110,6 @@ const TasksBlock = () => {
 		setStorage(copy);
 	};
 
-	console.log('num:', numChecked);
-
 	const addToRefs = (el) => {
 		if (el && !inputForm.current.includes(el)) {
 			inputForm.current.push(el);

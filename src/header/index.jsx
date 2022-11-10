@@ -13,7 +13,6 @@ const Header = ({
 }) => {
 	const [customizeIsOpen, setCustomizeIsOpen] = useState(false);
 
-	console.log('level', level);
 	return (
 		<header>
 			<a className={styles.logo} href="#">

@@ -1,6 +1,9 @@
 .root {
     padding: 10px;
+    box-sizing: border-box;
     width: 25%;
+        max-height:100%;
+    overflow: auto;
 }
 
 .header {
@@ -64,16 +67,19 @@ h3 {
     width: 100%;
     padding: 13px 10px;
     cursor: pointer;
+         transition: 0.1s;
 }
 
 .headerButtons > .popup li:hover {
     background-color: rgba(26, 153, 232, 0.095);
     color: rgb(68, 56, 239);
+        transition: 0.2s;
 }
 
 .taskList {
     width: 100%;
     margin: 0 0 17px 0;
+
 }
 .taskList > li {
     width: 100%;

@@ -82,8 +82,8 @@ p {
 
 
 .timer-task {
-    min-width:100%;
+    max-width:100%;
     display: flex;
     flex-direction: row;
-    min-height:100%;
+    max-height: calc(100vh - 82px);
 }
