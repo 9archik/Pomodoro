@@ -2,20 +2,35 @@ import styles from './style.module.css';
 import { useEffect, useState, useCallback } from 'react';
 import useSound from 'use-sound';
 import rington from '../sounds/ringtones/rington.mp3';
-const Pomodoro = ({ pomodoroValue, restValue, longRestValue, level, settingsArray }) => {
+import { CircularProgressbarWithChildren, CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import './custom.css'
+const Pomodoro = ({
+	pomodoroValue,
+	restValue,
+	longRestValue,
+	level,
+	settingsArray,
+	isStart,
+	setIsStart,
+}) => {
 	const [pomodoro, setPomodoro] = useState(0);
-	
+
 	const [rest, setRest] = useState(0);
-	
+
 	const [longRest, setLongRest] = useState(0);
 
 	const [timeClick, setTimeClick] = useState(0);
 
 	const [time, setTime] = useState(pomodoroValue * 60 * 1000);
 
-	const [isStart, setIsStart] = useState(false);
-
 	const [timeInterval, setTimeInterval] = useState(0);
+
+	const [minutes, setMinutes] = useState(Math.floor((time / (1000 * 60)) % 60));
+
+	const[percentage, setPercentage] = useState(0)
+
+	const [stopWorkRest] = useSound(rington);
 
 	const onStartClick = () => {
 		setTimeClick(window.performance.now());
@@ -27,8 +42,21 @@ const Pomodoro = ({ pomodoroValue, restValue, longRestValue, level, settingsArra
 		setTime(new Date(pomodoroValue * 60 * 1000));
 	};
 
-	const [stopWorkRest] = useSound(rington);
-	
+
+
+	useEffect(() => {
+		time > 0 ? setMinutes(Math.floor(time / (1000 * 60))) : setMinutes(0);
+		if (timeInterval == 0) {
+			setPercentage(((pomodoroValue * 60 * 1000 - time) / (pomodoroValue * 60 * 1000)) * 100);
+		} else if (timeInterval == 1) {
+			setPercentage(((restValue * 60 * 1000 - time) / (pomodoroValue * 60 * 1000)) * 100);
+		} else if (timeInterval == 2) {
+			setPercentage(((longRestValue * 60 * 1000 - time) / (pomodoroValue * 60 * 1000)) * 100);
+		}
+	}, [time]);
+
+
+
 	const refreshClock = () => {
 		setTime(() => {
 			if (timeInterval == 0) {
@@ -86,6 +114,7 @@ const Pomodoro = ({ pomodoroValue, restValue, longRestValue, level, settingsArra
 		setTime(pomodoroValue * 60 * 1000);
 	}, [pomodoroValue, restValue, longRestValue]);
 
+	console.log('percentage: ', percentage)
 	return (
 		<div className={styles.root}>
 			<div className={styles.container}>
@@ -102,18 +131,35 @@ const Pomodoro = ({ pomodoroValue, restValue, longRestValue, level, settingsArra
 					</li>
 				</ul>
 
-				<div className={styles.timer}>
-					<div className={styles.time}>
-						{isStart ? new Date(time).getMinutes() : pomodoroValue}:
+				<div
+					className={
+						timeInterval == 1 || timeInterval == 2
+							? [styles.timer, styles.rest].join(' ')
+							: styles.timer
+					}>
+					<CircularProgressbar
+						value={percentage}
+						strokeWidth={2}
+						styles={{
+							path: {
+								stroke: timeInterval ? 'rgb(121, 202, 0)' : `rgb(68, 56, 239)`,
+							},
+							trail: {
+								stroke: timeInterval ? `rgb(121, 202, 0, 0.25)` : 'rgba(26, 153, 232, 0.114)',
+							},
+						}}
+					/>
+					<div className={timeInterval ? [[styles.time, styles.rest].join(' ')] : styles.time}>
+						{isStart ? minutes : pomodoroValue}:
 						{isStart
 							? new Date(time).getSeconds() < 10
 								? `0${new Date(time).getSeconds()}`
 								: new Date(time).getSeconds()
 							: '00'}
-					</div>
-					<div className={styles.levelContainer}>
-						<p className={styles.level}>Level</p>
-						<div className={styles.levelName}>{settingsArray[level].name}</div>
+						<div className={ styles.levelContainer}>
+							<p className={styles.level}>Level</p>
+							<div className={styles.levelName}>{settingsArray[level].name}</div>
+						</div>
 					</div>
 				</div>
 

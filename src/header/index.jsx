@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import styles from './style.module.css';
 const Header = ({
@@ -11,12 +11,17 @@ const Header = ({
 	longRestValue,
 	setLongRestValue,
 	settingsArray,
+	isStart,
 }) => {
 	const [customizeIsOpen, setCustomizeIsOpen] = useState(false);
 
 	const [customRest, setCustomRest] = useState(50);
 	const [customLongRest, setCustomLongRest] = useState(50);
 	const [customPom, setCustomPom] = useState(50);
+
+	useEffect(() => {
+		isStart && setCustomizeIsOpen(false)
+	}, [isStart]);
 
 	const onChangeCheckbox = (index) => {
 		setLevel(index);
@@ -53,8 +58,8 @@ const Header = ({
 			</a>
 
 			<div className={styles.buttons}>
-				<div className={styles.customize}>
-					<button onClick={() => setCustomizeIsOpen(!customizeIsOpen)}>
+				<div className={isStart ? [styles.customize, styles.block].join(' ') : styles.customize}>
+					<button onClick={() => !isStart && setCustomizeIsOpen(!customizeIsOpen)}>
 						<svg
 							aria-hidden="true"
 							focusable="false"

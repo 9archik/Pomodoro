@@ -20,6 +20,7 @@ function App() {
 		{ name: 'Extended', pomodoro: 60, rest: 10, longRest: 25 },
 		{ name: 'Custom', pomodoro: pomodoroValue, rest: restValue, longRest: longRestValue },
 	]);
+		const [isStart, setIsStart] = useState(false);
 	return (
 		<>
 			<Header
@@ -32,6 +33,7 @@ function App() {
 				longRestValue={longRestValue}
 				setLongRestValue={(longRestValue) => setLongRestValue(longRestValue)}
 				settingsArray={settingsArray}
+				isStart={isStart}
 			/>
 			<div className="timer-task">
 				<Pomodoro
@@ -40,6 +42,8 @@ function App() {
 					restValue={restValue}
 					longRestValue={longRestValue}
 					settingsArray={settingsArray}
+					isStart={isStart}
+					setIsStart={(isStart) =>setIsStart(isStart)}
 				/>
 				<TasksBlock />
 			</div>

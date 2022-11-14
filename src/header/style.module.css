@@ -20,6 +20,15 @@ header {
     position: relative;
     margin: 0 10px 0 0;
 }
+.customize.block
+{
+opacity:0.6;
+
+}
+.customize.block>button
+{
+    cursor: not-allowed;
+}
 button {
     background-color: white;
     font-size: 18px;

@@ -43,44 +43,70 @@
     font-weight: 700;
 }
 
+.intervals > .active {
+    border-bottom: 1px solid rgb(121, 202, 0);
+}
+
+.intervals > .active:first-of-type {
+    border-bottom: 1px solid rgb(255, 2, 2);
+}
+
 .timer {
     width: 532px;
     height: 532px;
     border-radius: 100%;
-    background-color: rgba(26, 153, 232, 0.095);
+    background-color: rgba(26, 153, 232, 0.055);
     display: flex;
     align-items: center;
     flex-direction: column;
     margin: 0 0 23px 0;
+    position: relative;
 }
 
+.timer.rest {
+    background: rgba(121, 202, 0, 0.055);
+}
+
+.timer.rest:hover {
+    background: rgba(121, 202, 0, 0.114);
+}
+
+.timer:hover {
+    background-color: rgba(26, 153, 232, 0.114);
+}
 .time {
     font-size: 128px;
     font-weight: 700;
     color: rgb(68, 56, 239);
-    margin: 0 0 47px 0;
-    margin: 50% 0 0 0;
-    transform: translate(0, -60%);
+    margin: 0;
+
+    transform: translate(0, -50%);
+    position: absolute;
+    top: 50%;
 }
+
+.time.rest
+{
+    color:rgb(121, 202, 0);
+}
+
 
 .levelContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: -45px 0 0 0;
+    margin: 15px 0 0 0;
 }
 
 .level {
     font-size: 24px;
     font-weight: 400;
-    color: rgb(68, 56, 239);
     margin: 0 0 7px 0;
 }
 
 .levelName {
     font-size: 28px;
     font-weight: 700;
-    color: rgb(68, 56, 239);
 }
 
 .start {
