@@ -5,6 +5,7 @@ import Pomodoro from './Pomodoro';
 import React from 'react';
 import { useState } from 'react';
 import TasksBlock from './TasksBlock';
+import MusicPlayer from './MusicPlayer';
 
 function App() {
 	const [level, setLevel] = useState(1);
@@ -47,6 +48,8 @@ function App() {
 				/>
 				<TasksBlock />
 			</div>
+
+			<MusicPlayer/>
 		</>
 	);
 }
