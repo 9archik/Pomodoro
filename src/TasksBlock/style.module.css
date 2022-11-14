@@ -84,6 +84,17 @@ h3 {
 .taskList > li {
     width: 100%;
 }
+@keyframes an {
+    0%
+    {
+        transform: translate(0, 50px);
+    }
+    100%
+    {
+        transform: translate(0);
+    }
+}
+
 .taskItem {
     width: 100%;
     display: flex;
@@ -98,6 +109,8 @@ h3 {
     -moz-box-shadow: 4px 4px 11px -1px rgba(0, 0, 0, 0.11);
     box-shadow: 4px 4px 11px -1px rgba(0, 0, 0, 0.11);
     transition: 0.2s;
+
+    
 }
 
 .taskItemChecked {
@@ -255,6 +268,7 @@ h3 {
     padding: 12px 5px;
     border-radius: 10px;
     margin: 0 0 12px 0;
+        animation: an .5s;
 }
 
 .inputForm {
@@ -302,6 +316,7 @@ h3 {
     -webkit-box-shadow: inset 0px 10px 15px -6px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: inset 0px 10px 15px -6px rgba(0, 0, 0, 0.1);
     box-shadow: inset 0px 10px 15px -6px rgba(0, 0, 0, 0.1);
+    animation: an .5s;
 }
 .addTask i {
     margin: 0 7px 0 0;

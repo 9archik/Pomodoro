@@ -17,8 +17,7 @@ const TasksBlock = () => {
 	localStorage.setItem('storage', JSON.stringify(storage));
 
 	const textareaHeight = (index) => {
-		console.log('current', inputForm.current[index].scrollHeight);
-		console.log('input', index);
+
 		inputForm.current[index].style.height = '0px';
 		const scrollHeight = inputForm.current[index].scrollHeight;
 		inputForm.current[index].style.height = scrollHeight + 'px';
@@ -193,7 +192,7 @@ const TasksBlock = () => {
 						</li>
 						<li
 							onClick={() => {
-								setStorage(()=>storage.filter((element)=>element.checked));
+								setStorage(() => storage.filter((element) => element.checked));
 								setHeaderBtnsPopup(!headerBtnsPopup);
 							}}>
 							<svg
@@ -216,9 +215,9 @@ const TasksBlock = () => {
 						</li>
 						<li
 							onClick={() => {
-								setStorage(()=>storage.filter((element) =>!element.checked));
+								setStorage(() => storage.filter((element) => !element.checked));
 								setHeaderBtnsPopup(!headerBtnsPopup);
-								setNumChecked(0)
+								setNumChecked(0);
 							}}>
 							<svg
 								data-v-60094630=""
@@ -313,7 +312,9 @@ const TasksBlock = () => {
 										/>
 										<div>
 											<button onClick={() => element.info && onSaveClick(index)}>Save</button>
-											<button className={styles.cancelBtn} onClick={() => onCancelClick(index)}>Cancel</button>
+											<button className={styles.cancelBtn} onClick={() => onCancelClick(index)}>
+												Cancel
+											</button>
 										</div>
 									</div>
 								</li>

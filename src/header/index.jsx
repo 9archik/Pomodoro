@@ -10,9 +10,42 @@ const Header = ({
 	setRestValue,
 	longRestValue,
 	setLongRestValue,
+	settingsArray,
 }) => {
 	const [customizeIsOpen, setCustomizeIsOpen] = useState(false);
 
+	const [customRest, setCustomRest] = useState(50);
+	const [customLongRest, setCustomLongRest] = useState(50);
+	const [customPom, setCustomPom] = useState(50);
+
+	const onChangeCheckbox = (index) => {
+		setLevel(index);
+		setPomodoroValue(settingsArray[index].pomodoro);
+		setRestValue(settingsArray[index].rest);
+		setLongRestValue(settingsArray[index].longRest);
+	};
+
+	const onClickCustomCheckbox = (index) => {
+		setLevel(index);
+		setPomodoroValue(customPom);
+		setRestValue(customRest);
+		setLongRestValue(customLongRest);
+	};
+
+	const setPom = (value) => {
+		setCustomPom(value);
+		setPomodoroValue(value);
+	};
+
+	const setRest = (value) => {
+		setCustomRest(value);
+		setRestValue(value);
+	};
+
+	const setLongRest = (value) => {
+		setCustomLongRest(value);
+		setLongRestValue(value);
+	};
 	return (
 		<header>
 			<a className={styles.logo} href="#">
@@ -42,73 +75,36 @@ const Header = ({
 					</button>
 					{customizeIsOpen && (
 						<ul className={styles.settings}>
-							<li onClick={() => setLevel(0)}>
-								<div className={styles.customCheckbox}>
-									<input checked={level === 0 ? 'yes' : ''} name="level" type="radio" id="baby" />
-									<span></span>
-								</div>
+							{settingsArray.map((el, index) => {
+								if (index < settingsArray.length - 1)
+									return (
+										<li onClick={() => onChangeCheckbox(index)}>
+											<div className={styles.customCheckbox}>
+												<input
+													checked={level === index ? 'yes' : ''}
+													name="level"
+													type="radio"
+													id={el.name}
+												/>
+												<span></span>
+											</div>
 
-								<label for="baby">
-									<div className={styles.level}>Baby step</div>
-									<div className={styles.time}>
-										<span>10 min</span> &#183; <span>5 min</span> &#183; <span>10 min</span>
-									</div>
-								</label>
-							</li>
-
-							<li onClick={() => setLevel(1)}>
-								<div className={styles.customCheckbox}>
-									<input
-										checked={level === 1 ? 'yes' : ''}
-										name="level"
-										type="radio"
-										id="popular"
-									/>
-									<span></span>
-								</div>
-
-								<label for="popular">
-									<div className={styles.level}>Popular</div>
-									<div className={styles.time}>
-										<span>20 min</span> &#183; <span>5 min</span> &#183; <span>15 min</span>
-									</div>
-								</label>
-							</li>
-
-							<li onClick={() => setLevel(2)}>
-								<div className={styles.customCheckbox}>
-									<input checked={level === 2 ? 'yes' : ''} name="level" type="radio" id="medium" />
-									<span></span>
-								</div>
-
-								<label for="medium">
-									<div className={styles.level}>Medium</div>
-									<div className={styles.time}>
-										<span>40 min</span> &#183; <span>8 min</span> &#183; <span>20 min</span>
-									</div>
-								</label>
-							</li>
-
-							<li onClick={() => setLevel(3)}>
-								<div className={styles.customCheckbox}>
-									<input
-										checked={level === 3 ? 'yes' : ''}
-										name="level"
-										type="radio"
-										id="extended"
-									/>
-									<span></span>
-								</div>
-								<label for="extended">
-									<div className={styles.level}>Extended</div>
-									<div className={styles.time}>
-										<span>60 min</span> &#183; <span>10 min</span> &#183; <span>25 min</span>
-									</div>
-								</label>
-							</li>
+											<label for={el.name}>
+												<div className={styles.level}>{el.name}</div>
+												<div className={styles.time}>
+													<span>{el.pomodoro} min</span> &#183; <span>{el.rest} min</span> &#183;{' '}
+													<span>{el.longRest} min</span>
+												</div>
+											</label>
+										</li>
+									);
+								else <></>;
+							})}
 
 							<li className={styles.customBlock}>
-								<div onClick={() => setLevel(4)} className={styles.customCheckbox}>
+								<div
+									onClick={() => onClickCustomCheckbox(settingsArray.length - 1)}
+									className={styles.customCheckbox}>
 									<input checked={level === 4 ? 'yes' : ''} name="level" type="radio" id="custom" />
 									<span></span>
 								</div>
@@ -117,7 +113,7 @@ const Header = ({
 									<ul>
 										<li>
 											<div>
-												<span>{pomodoroValue} min</span> <span>Pomidoro</span>
+												<span>{customPom} min</span> <span>Pomidoro</span>
 											</div>
 											<input
 												className={level === 4 ? '' : styles.sliderBlock}
@@ -125,14 +121,14 @@ const Header = ({
 												min="1"
 												max="100"
 												step="1"
-												value={pomodoroValue}
-												onChange={(events) => level === 4 && setPomodoroValue(events.target.value)}
+												value={customPom}
+												onChange={(events) => level === 4 && setPom(events.target.value)}
 											/>
 										</li>
 
 										<li>
 											<div>
-												<span>{restValue} min</span> <span>Rest</span>
+												<span>{customRest} min</span> <span>Rest</span>
 											</div>
 											<input
 												className={level === 4 ? '' : styles.sliderBlock}
@@ -141,14 +137,14 @@ const Header = ({
 												max="100"
 												step="1"
 												defaultValue="50"
-												value={restValue}
-												onChange={(events) => level === 4 && setRestValue(events.target.value)}
+												value={customRest}
+												onChange={(events) => level === 4 && setRest(events.target.value)}
 											/>
 										</li>
 
 										<li>
 											<div>
-												<span>{longRestValue} min</span> <span>Long rest</span>
+												<span>{customLongRest} min</span> <span>Long rest</span>
 											</div>
 											<input
 												className={level === 4 ? '' : styles.sliderBlock}
@@ -157,8 +153,8 @@ const Header = ({
 												max="100"
 												step="1"
 												defaultValue="50"
-												value={longRestValue}
-												onChange={(events) => level === 4 && setLongRestValue(events.target.value)}
+												value={customLongRest}
+												onChange={(events) => level === 4 && setLongRest(events.target.value)}
 											/>
 										</li>
 									</ul>
