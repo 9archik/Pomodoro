@@ -4,15 +4,27 @@
     left: 0;
     width: 100%;
 }
-
+button {
+    background-color: inherit;
+    cursor: pointer;
+}
 .mixes {
-    padding: 15px 10px;
+    padding: 15px 20px;
     background-color: rgb(237, 247, 255);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
--webkit-box-shadow: -1px -4px 13px -2px rgba(0, 0, 0, 0.2);
--moz-box-shadow: -1px -4px 13px -2px rgba(0, 0, 0, 0.2);
-box-shadow: -1px -4px 13px -2px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: -1px -4px 13px -2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: -1px -4px 13px -2px rgba(0, 0, 0, 0.2);
+    box-shadow: -1px -4px 13px -2px rgba(0, 0, 0, 0.2);
+    transform: translate(0);
+    transition: 1s;
+    z-index: -1;
+    position: relative;
+}
+
+.mixes.close {
+    transform: translate(0, 200%);
+    transition: 1s;
 }
 
 .mixes > h4 {
@@ -20,67 +32,179 @@ box-shadow: -1px -4px 13px -2px rgba(0, 0, 0, 0.2);
     margin: 0 0 10px 0;
 }
 
-.playlists
-{
+.playlists {
     display: flex;
     gap: 15px;
 }
 
-.control
-{
-    z-index:1;
+.control {
+    z-index: 5;
 
     background-color: rgb(212, 225, 237);
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 7px 10px;
--webkit-box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.2);
--moz-box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.2);
-box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.2);
+    padding: 7px 20px;
+    -webkit-box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.2);
 }
 
-.image
-{
+.image {
     position: relative;
     margin: 0 0 7px 0;
 }
 
-.btnPlaylist
-{
+.btnPlaylist {
     background-color: rgb(53, 53, 53);
     padding: 10px 10px 0 10px;
     border-radius: 7px;
+    cursor: pointer;
 }
 
-.btnPlaylist:hover > .image >img
-{
-    
+.btnPlaylist:hover > .image > img {
+    filter: brightness(75%);
+    transition: 0.2s;
 }
 
-.image > span
-{
+.btnPlaylist:hover > .image > .circlePlay {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.image > span {
     position: absolute;
-    bottom:5px;
-    left:5px;
-    padding:2px;
+    bottom: 5px;
+    left: 5px;
+    padding: 2px;
     border-radius: 5px;
     background-color: white;
     font-size: 12px;
     font-weight: 700;
-
 }
 
-.namePlaylist
-{
+.namePlaylist {
     color: white;
     font-size: 14px;
-    margin: 0 0 9px 0
+    margin: 0 0 9px 0;
 }
 
-.numTracks
-{
+.numTracks {
     font-size: 12px;
-    color:white;
+    color: white;
     margin: 0 0 24px 0;
+}
+
+.circlePlay {
+    width: 54px;
+    height: 54px;
+    border-radius: 100%;
+    border: 1px solid white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+.circlePlay::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 11px 0 11px 23px;
+    border-color: transparent transparent transparent #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+}
+
+.burger {
+    width: 25px;
+    height: 19px;
+    position: relative;
+    background-color: inherit;
+
+    margin: 0 33px 0 0;
+}
+
+.burger > span {
+    width: 100%;
+    height: 4px;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.burger::before {
+    content: "";
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+}
+
+.burger::after {
+    content: "";
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+}
+
+.button {
+    background-color: inherit;
+    width: 35px;
+    height: 22px;
+}
+
+.button.play {
+    border-style: solid;
+    border-width: 10px 0 10px 20px;
+    border-color: transparent transparent transparent #000000;
+    border-radius: 4px;
+}
+
+.button.pause {
+    border-style: solid;
+    border-color: #202020;
+    border-style: double;
+    border-width: 0px 0px 0px 17px;
+    border-color: #202020;
+}
+
+.prev > img,
+.next > img {
+    width: 14px;
+    height: 14px;
+}
+
+.prev {
+    margin: 0 10px 0 10px;
+}
+
+.next {
+    margin: 0 25px 0 0;
+}
+
+input[type="range"] {
+    width: 215px;
+    margin: 0 12px 0 0;
+}
+
+.nameTrack {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.volumeSwitch {
+    margin: 0 6px 0 0;
 }

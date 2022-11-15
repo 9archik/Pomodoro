@@ -327,7 +327,9 @@ const TasksBlock = () => {
 				<button
 					onClick={() => addTask(storage === null ? 0 : storage.length)}
 					className={!isAdd ? styles.addTask : styles.isAdd}>
-					<i className="fa fa-plus" aria-hidden="true"></i> Add another task
+					<span>
+						<i className="fa fa-plus" aria-hidden="true"></i> Add another task
+					</span>
 				</button>
 			)}
 		</div>

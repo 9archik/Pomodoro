@@ -317,9 +317,16 @@ h3 {
     -moz-box-shadow: inset 0px 10px 15px -6px rgba(0, 0, 0, 0.1);
     box-shadow: inset 0px 10px 15px -6px rgba(0, 0, 0, 0.1);
     animation: an .5s;
+
 }
 .addTask i {
     margin: 0 7px 0 0;
+}
+
+.addTask > span
+{
+    display: flex;
+    align-items: center;
 }
 
 .isEdit {
