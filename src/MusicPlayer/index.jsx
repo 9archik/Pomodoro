@@ -26,12 +26,6 @@ import trap3 from '../sounds/music/Trap_3.mp3';
 import trap4 from '../sounds/music/Trap_4.mp3';
 
 const MusicPlayer = () => {
-	const [isPlay, setIsPlay] = useState(false);
-	const [burgerOpen, setBurgerOpen] = useState(false);
-	const [volumeOn, setVolumeOn] = useState(true);
-
-	const [volumeValue, setVolumeValue] = useState(80);
-
 	const mixes = [
 		{
 			folder: [
@@ -70,21 +64,99 @@ const MusicPlayer = () => {
 		},
 	];
 
+	const [isPlay, setIsPlay] = useState(false);
+
+	const [track, setTrack] = useState(new Audio(mixes[0].folder[0].url));
+
+	const [burgerOpen, setBurgerOpen] = useState(false);
+
+	const [volumeOn, setVolumeOn] = useState(true);
+
+	const [volumeValue, setVolumeValue] = useState(80);
+
+	const [numTrack, setNumTrack] = useState(0);
+
+	const [numPlaylist, setNumPlayList] = useState(0);
+
 	useEffect(() => {
-		if (volumeValue == 0) setVolumeOn(false);
+		isPlay ? track.play() : track.pause();
+	}, [isPlay]);
+
+	useEffect(() => {
+		track.addEventListener('ended', () => {
+			setTrack(() => {
+				if (numTrack < mixes[0].folder.length - 1) {
+					console.log('numTrack: ', numTrack);
+					setNumTrack(() => numTrack + 1);
+
+					return new Audio(mixes[0].folder[numTrack + 1].url);
+				} else {
+					setNumTrack(() => 0);
+					return new Audio(mixes[0].folder[0].url);
+				}
+			});
+		});
+
+		isPlay && track.play();
+		track.volume = volumeValue / 100;
+	}, [track]);
+
+	useEffect(() => {
+		!isPlay ? track.pause() : track.play();
+		track.volume = volumeValue / 100;
+	}, [isPlay]);
+
+	useEffect(() => {
+		track.volume = volumeValue / 100;
 	}, [volumeValue]);
+
+	const handlerNext = () => {
+		track.pause();
+		setTrack(() => {
+			if (numTrack < mixes[numPlaylist].folder.length - 1) {
+				setNumTrack(() => numTrack + 1);
+
+				return new Audio(mixes[numPlaylist].folder[numTrack + 1].url);
+			} else {
+				setNumTrack(() => 0);
+				return new Audio(mixes[numPlaylist].folder[0].url);
+			}
+		});
+	};
+
+	const handlerPrev = () => {
+		track.pause();
+		setTrack(() => {
+			if (numTrack > 0) {
+				setNumTrack(() => numTrack - 1);
+				return new Audio(mixes[numPlaylist].folder[numTrack - 1].url);
+			} else {
+				setNumTrack(() => mixes[0].folder.length - 1);
+				return new Audio(mixes[numPlaylist].folder[mixes[0].folder.length - 1].url);
+			}
+		});
+	};
+
+	const handlePlaylist = (index) => {
+		track.pause();
+		setTrack(() => {
+			setNumTrack(0);
+			setNumPlayList(index);
+			return new Audio(mixes[index].folder[0].url);
+		});
+	};
 
 	return (
 		<div className={styles.root}>
 			<div className={burgerOpen ? styles.mixes : [[styles.mixes, styles.close].join(' ')]}>
 				<h4>Mixes</h4>
 				<ul className={styles.playlists}>
-					{mixes.map((elem) => {
+					{mixes.map((elem, index) => {
 						return (
-							<li className={styles.btnPlaylist}>
+							<li onClick={() => handlePlaylist(index)} className={styles.btnPlaylist}>
 								<div className={styles.image}>
 									<img src={elem.urlImage} width="112" height="112" alt="" />
-									<span>current</span>
+									{index == numPlaylist && <span>current</span>}
 
 									<div className={styles.circlePlay}></div>
 								</div>
@@ -108,18 +180,18 @@ const MusicPlayer = () => {
 							? [[styles.button, styles.pause].join(' ')]
 							: [[styles.button, styles.play].join(' ')]
 					}></button>
-				<button className={styles.prev}>
+				<button onClick={() => handlerPrev()} className={styles.prev}>
 					<img src={prevTrack} alt="" />
 				</button>
-				<button className={styles.next}>
+				<button onClick={() => handlerNext()} className={styles.next}>
 					<img src={nextTrack} alt="" />
 				</button>
 				<button
 					onClick={() => {
-						setVolumeOn(!volumeOn);
+						setVolumeValue(0);
 					}}
 					className={styles.volumeSwitch}>
-					{volumeOn ? <img src={volumeUp} alt="" /> : <img src={volumeOff} alt="" />}
+					{volumeValue ? <img src={volumeUp} alt="" /> : <img src={volumeOff} alt="" />}
 				</button>
 				<input
 					value={volumeOn ? volumeValue : 0}
@@ -132,7 +204,7 @@ const MusicPlayer = () => {
 					max="100"
 					step="5"
 				/>
-				<div className={styles.nameTrack}>lofi 1</div>
+				<div className={styles.nameTrack}>{mixes[numPlaylist].folder[numTrack].name}</div>
 			</div>
 		</div>
 	);

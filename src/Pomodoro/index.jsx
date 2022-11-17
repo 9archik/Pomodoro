@@ -4,7 +4,7 @@ import useSound from 'use-sound';
 import rington from '../sounds/ringtones/rington.mp3';
 import { CircularProgressbarWithChildren, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import './custom.css'
+import './custom.css';
 const Pomodoro = ({
 	pomodoroValue,
 	restValue,
@@ -28,7 +28,7 @@ const Pomodoro = ({
 
 	const [minutes, setMinutes] = useState(Math.floor((time / (1000 * 60)) % 60));
 
-	const[percentage, setPercentage] = useState(0)
+	const [percentage, setPercentage] = useState(0);
 
 	const [stopWorkRest] = useSound(rington);
 
@@ -42,8 +42,6 @@ const Pomodoro = ({
 		setTime(new Date(pomodoroValue * 60 * 1000));
 	};
 
-
-
 	useEffect(() => {
 		time > 0 ? setMinutes(Math.floor(time / (1000 * 60))) : setMinutes(0);
 		if (timeInterval == 0) {
@@ -54,8 +52,6 @@ const Pomodoro = ({
 			setPercentage(((longRestValue * 60 * 1000 - time) / (pomodoroValue * 60 * 1000)) * 100);
 		}
 	}, [time]);
-
-
 
 	const refreshClock = () => {
 		setTime(() => {
@@ -114,7 +110,6 @@ const Pomodoro = ({
 		setTime(pomodoroValue * 60 * 1000);
 	}, [pomodoroValue, restValue, longRestValue]);
 
-	console.log('percentage: ', percentage)
 	return (
 		<div className={styles.root}>
 			<div className={styles.container}>
@@ -156,7 +151,7 @@ const Pomodoro = ({
 								? `0${new Date(time).getSeconds()}`
 								: new Date(time).getSeconds()
 							: '00'}
-						<div className={ styles.levelContainer}>
+						<div className={styles.levelContainer}>
 							<p className={styles.level}>Level</p>
 							<div className={styles.levelName}>{settingsArray[level].name}</div>
 						</div>
