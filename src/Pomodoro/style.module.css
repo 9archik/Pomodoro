@@ -10,8 +10,6 @@
         border-bottom: 1px solid rgb(153, 152, 152);
         padding:0 10px;
     }
-    .container {
-    }
 }
 .container {
     width: 100%;
@@ -43,21 +41,20 @@
     padding: 20px 30px;
     color: rgb(121, 202, 0);
     cursor: pointer;
+    text-align: center;
 }
 
 @media (max-width: 570px) {
     .intervals > li {
         font-size: 24px;
         padding: 10px 15px;
-        text-align: center;
+
     }
 }
 
 @media (max-width:473px) {
         .intervals > li {
         font-size: 20px;
-        padding: 10px 15px;
-        text-align: center;
     }
 }
 

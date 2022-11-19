@@ -75,6 +75,16 @@ button svg {
     z-index:10;
 }
 
+@media (max-width:424px) {
+    .settings
+    {
+        position: fixed;
+        top: 53px;
+        right:0;
+        width:305px;
+    }
+}
+
 .settingsIsOpen
 {
     display: none;

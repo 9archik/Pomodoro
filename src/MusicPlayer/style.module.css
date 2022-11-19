@@ -1,5 +1,4 @@
 .root {
-
     width: 100%;
 }
 
@@ -19,11 +18,13 @@ button {
     transition: 1s;
     z-index: -1;
     position: fixed;
-
-        bottom: 40px;
+    height: 273px;
+    bottom: 40px;
     width: 100%;
     left: 0;
     z-index: 1000;
+    box-sizing: border-box;
+    overflow: auto;
 }
 
 .mixes.close {
@@ -38,6 +39,7 @@ button {
 
 .playlists {
     display: flex;
+    flex-wrap: wrap;
     gap: 15px;
 }
 
@@ -51,9 +53,11 @@ button {
     -moz-box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.2);
     box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.2);
     position: fixed;
-    bottom:0;
-    left:0;
+    bottom: 0;
+    left: 0;
     z-index: 1001;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .image {
@@ -135,6 +139,12 @@ button {
     margin: 0 33px 0 0;
 }
 
+@media (max-width: 424px) {
+    .burger {
+        margin: 0 23px 0 0;
+    }
+}
+
 .burger > span {
     width: 100%;
     height: 4px;
@@ -171,6 +181,12 @@ button {
     height: 22px;
 }
 
+@media (max-width: 424px) {
+    .button {
+        margin: 0 -10px 0 0;
+    }
+}
+
 .button.play {
     border-style: solid;
     border-width: 10px 0 10px 20px;
@@ -200,17 +216,48 @@ button {
     margin: 0 25px 0 0;
 }
 
+@media (max-width: 424px) {
+    .next {
+        margin: 0 12px 0 0;
+    }
+}
+
 input[type="range"] {
     width: 215px;
     margin: 0 12px 0 0;
 }
 
+@media (max-width: 767px) {
+    input[type="range"] {
+        width: 107px;
+        margin: 0;
+    }
+}
+
+@media (max-width: 424px) {
+    input[type="range"] {
+        width: 83px;
+
+    }
+}
 .nameTrack {
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.05em;
 }
 
+@media (max-width: 767px) {
+    .nameTrack {
+        display: none;
+    }
+}
+
 .volumeSwitch {
     margin: 0 6px 0 0;
+}
+
+@media (max-width: 424px) {
+    .volumeSwitch {
+        margin: 0 3px 0 0;
+    }
 }

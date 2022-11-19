@@ -17,11 +17,11 @@ const TasksBlock = () => {
 	localStorage.setItem('storage', JSON.stringify(storage));
 
 	const textareaHeight = (index) => {
-
 		inputForm.current[index].style.height = '0px';
 		const scrollHeight = inputForm.current[index].scrollHeight;
 		inputForm.current[index].style.height = scrollHeight + 'px';
 	};
+
 	const [numChecked, setNumChecked] = useState();
 
 	useEffect(() => {
@@ -256,7 +256,7 @@ const TasksBlock = () => {
 													type="checkbox"
 													id={index}
 												/>
-												<label className={element.checked && styles.labelChecked} for={index}>
+												<label className={element.checked && styles.labelChecked} htmlFor={index}>
 													{element.info}
 												</label>
 
