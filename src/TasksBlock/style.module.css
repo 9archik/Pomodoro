@@ -2,8 +2,16 @@
     padding: 10px;
     box-sizing: border-box;
     width: 25%;
-        max-height:100%;
+    max-height: 100%;
     overflow: auto;
+    z-index: 1;
+}
+
+@media (max-width: 1200px) {
+    .root {
+        width: 100%;
+        /* padding: 15px 10px 60px; */
+    }
 }
 
 .header {
@@ -48,7 +56,7 @@ h3 {
     border-radius: 10px;
     margin: 14px 0 0 0;
     display: block;
-    z-index: 100;
+    z-index: 10;
     background-color: white;
 }
 
@@ -67,30 +75,28 @@ h3 {
     width: 100%;
     padding: 13px 10px;
     cursor: pointer;
-         transition: 0.1s;
+    transition: 0.1s;
 }
 
 .headerButtons > .popup li:hover {
     background-color: rgba(26, 153, 232, 0.095);
     color: rgb(68, 56, 239);
-        transition: 0.2s;
+    transition: 0.2s;
 }
 
 .taskList {
     width: 100%;
     margin: 0 0 17px 0;
-
+    font-size: 18px;
 }
 .taskList > li {
     width: 100%;
 }
 @keyframes an {
-    0%
-    {
+    0% {
         transform: translate(0, 50px);
     }
-    100%
-    {
+    100% {
         transform: translate(0);
     }
 }
@@ -109,8 +115,6 @@ h3 {
     -moz-box-shadow: 4px 4px 11px -1px rgba(0, 0, 0, 0.11);
     box-shadow: 4px 4px 11px -1px rgba(0, 0, 0, 0.11);
     transition: 0.2s;
-
-    
 }
 
 .taskItemChecked {
@@ -217,18 +221,19 @@ h3 {
 }
 
 .taskItemBtns {
-    display: flex;
     position: absolute;
     right: 10px;
     z-index: 10;
     top: 49%;
     transform: translate(0, -50%);
     opacity: 0;
+    display: none;
 }
 
 .taskItem:hover > .taskItemBtns {
     opacity: 1;
     transition: 0.2s;
+    display: flex;
 }
 
 .taskItemChecked:hover > .taskItemBtns {
@@ -268,7 +273,7 @@ h3 {
     padding: 12px 5px;
     border-radius: 10px;
     margin: 0 0 12px 0;
-        animation: an .5s;
+    animation: an 0.5s;
 }
 
 .inputForm {
@@ -278,6 +283,7 @@ h3 {
     padding: 5px;
     resize: none;
     margin: 0 0 14px 0;
+    font-size: 18px;
 }
 
 .inputForm:focus {
@@ -316,15 +322,14 @@ h3 {
     -webkit-box-shadow: inset 0px 10px 15px -6px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: inset 0px 10px 15px -6px rgba(0, 0, 0, 0.1);
     box-shadow: inset 0px 10px 15px -6px rgba(0, 0, 0, 0.1);
-    animation: an .5s;
-
+    animation: an 0.5s;
+    font-size: 18px;
 }
 .addTask i {
     margin: 0 7px 0 0;
 }
 
-.addTask > span
-{
+.addTask > span {
     display: flex;
     align-items: center;
 }

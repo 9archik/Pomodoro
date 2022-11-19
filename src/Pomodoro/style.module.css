@@ -3,6 +3,16 @@
     border-right: 1px solid rgb(236, 236, 236);
 }
 
+@media (max-width: 1200px) {
+    .root {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgb(153, 152, 152);
+        padding:0 10px;
+    }
+    .container {
+    }
+}
 .container {
     width: 100%;
     display: flex;
@@ -35,6 +45,32 @@
     cursor: pointer;
 }
 
+@media (max-width: 570px) {
+    .intervals > li {
+        font-size: 24px;
+        padding: 10px 15px;
+        text-align: center;
+    }
+}
+
+@media (max-width:473px) {
+        .intervals > li {
+        font-size: 20px;
+        padding: 10px 15px;
+        text-align: center;
+    }
+}
+
+@media (max-width:385px) {
+        .intervals > li {
+        font-size: 18px;
+        padding: 10px 15px;
+        text-align: center;
+    }
+}
+
+
+
 .intervals > li:hover {
     background-color: rgba(22, 115, 115, 0.088);
 }
@@ -63,6 +99,26 @@
     position: relative;
 }
 
+@media (max-width: 570px) {
+    .timer {
+        width: 450px;
+        height: 450px;
+    }
+}
+
+@media (max-width: 473px) {
+    .timer {
+        width: 386px;
+        height: 386px;
+    }
+}
+
+@media (max-width: 425px) {
+    .timer {
+        width: 310px;
+        height: 310px;
+    }
+}
 .timer.rest {
     background: rgba(121, 202, 0, 0.055);
 }
@@ -85,11 +141,15 @@
     top: 50%;
 }
 
-.time.rest
-{
-    color:rgb(121, 202, 0);
+@media (max-width: 473px) {
+    .time {
+        font-size: 82px;
+    }
 }
 
+.time.rest {
+    color: rgb(121, 202, 0);
+}
 
 .levelContainer {
     display: flex;
@@ -116,4 +176,15 @@
     font-size: 32px;
     font-weight: 700;
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width:425px) {
+    .start
+    {
+        width: 100%;
+        padding: 25px 0;
+    }
 }

@@ -142,12 +142,13 @@ const MusicPlayer = () => {
 		setTrack(() => {
 			setNumTrack(0);
 			setNumPlayList(index);
+			setIsPlay(true);
 			return new Audio(mixes[index].folder[0].url);
 		});
 	};
 
 	return (
-		<div className={styles.root}>
+		<div className={burgerOpen ? [[styles.root, styles.open].join(' ')] : styles.root}>
 			<div className={burgerOpen ? styles.mixes : [[styles.mixes, styles.close].join(' ')]}>
 				<h4>Mixes</h4>
 				<ul className={styles.playlists}>

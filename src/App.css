@@ -86,4 +86,15 @@ p {
     display: flex;
     flex-direction: row;
     max-height: calc(100vh - 82px);
+
+}
+
+@media (max-width:1200px) {
+   .timer-task 
+   {
+    display: flex;
+    flex-direction: column;
+    max-height: max-content;
+    padding-bottom:50px;
+   }
 }

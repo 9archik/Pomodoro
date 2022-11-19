@@ -1,9 +1,8 @@
 .root {
-    position: fixed;
-    bottom: 0;
-    left: 0;
+
     width: 100%;
 }
+
 button {
     background-color: inherit;
     cursor: pointer;
@@ -19,11 +18,16 @@ button {
     transform: translate(0);
     transition: 1s;
     z-index: -1;
-    position: relative;
+    position: fixed;
+
+        bottom: 40px;
+    width: 100%;
+    left: 0;
+    z-index: 1000;
 }
 
 .mixes.close {
-    transform: translate(0, 200%);
+    bottom: -267px;
     transition: 1s;
 }
 
@@ -38,8 +42,6 @@ button {
 }
 
 .control {
-    z-index: 5;
-
     background-color: rgb(212, 225, 237);
     width: 100%;
     display: flex;
@@ -48,6 +50,10 @@ button {
     -webkit-box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.2);
     box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom:0;
+    left:0;
+    z-index: 1001;
 }
 
 .image {

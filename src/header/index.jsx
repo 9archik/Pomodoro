@@ -20,7 +20,7 @@ const Header = ({
 	const [customPom, setCustomPom] = useState(50);
 
 	useEffect(() => {
-		isStart && setCustomizeIsOpen(false)
+		isStart && setCustomizeIsOpen(false);
 	}, [isStart]);
 
 	const onChangeCheckbox = (index) => {
@@ -76,7 +76,7 @@ const Header = ({
 								data-v-08ce792a=""
 								className=""></path>
 						</svg>
-						Customize
+						<span>Customize</span>
 					</button>
 					{customizeIsOpen && (
 						<ul className={styles.settings}>
@@ -186,7 +186,7 @@ const Header = ({
 							data-v-08ce792a=""
 							className=""></path>
 					</svg>
-					Restart
+					<span>Restart</span>
 				</button>
 			</div>
 		</header>

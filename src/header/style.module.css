@@ -11,6 +11,13 @@ header {
     color: black;
 }
 
+@media (max-width:767px) {
+    .logo
+    {
+        font-size:24px
+    }
+}
+
 .buttons {
     display: flex;
     align-items: center;
@@ -19,6 +26,18 @@ header {
 .customize {
     position: relative;
     margin: 0 10px 0 0;
+}
+
+@media (max-width:767px) {
+    .customize > button > span
+    {
+        display: none;
+    }
+
+    .restart > span
+    {
+         display: none;
+    }
 }
 .customize.block
 {
