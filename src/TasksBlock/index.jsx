@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { forwardRef, useEffect } from 'react';
 import { useState, useRef } from 'react';
 import styles from './style.module.css';
-const TasksBlock = () => {
+const TasksBlock = forwardRef((props, ref) => {
 	const [headerBtnsPopup, setHeaderBtnsPopup] = useState(false);
 
 	let inputForm = useRef([]);
@@ -122,8 +122,57 @@ const TasksBlock = () => {
 		setStorage(copy);
 	};
 
+	const [body, setBody] = useState(document.getElementsByTagName('body'));
+	const [windowDimenion, detectHW] = useState({
+		winWidth: window.innerWidth,
+		winHeight: window.innerHeight,
+	});
+
+	let rooting = useRef(root);
+
+	const detectSize = () => {
+		detectHW({
+			winWidth: window.innerWidth,
+			winHeight: window.innerHeight,
+		});
+	};
+
+	const [scrollPos, setScrollPos] = useState(0);
+
+	const scrollPage = () => {
+		setScrollPos(window.pageYOffset);
+	};
+
+	useEffect(() => {
+		window.addEventListener('resize', detectSize);
+		window.addEventListener('scroll', scrollPage);
+
+		if (windowDimenion.winWidth > 1200) {
+			if (ref.current.getBoundingClientRect().y < 0) {
+				rooting.current.style.height = `calc(${window.screen.availHeight}px)`;
+				rooting.current.style.position = 'fixed';
+				rooting.current.style.top = '0px';
+				rooting.current.style.right = '0';
+			} else {
+				rooting.current.style.height = `calc(${window.screen.availHeight}px - 82px)`;
+				rooting.current.style.position = 'absolute';
+				rooting.current.style.top = '82px';
+
+				rooting.current.style.right = '0';
+			}
+		} else {
+			rooting.current.style.height = 'fit-content';
+			rooting.current.style.position = 'static';
+		}
+
+		return () => {
+			window.removeEventListener('resize', detectSize);
+			window.removeEventListener('scroll', scrollPage);
+		};
+	}, [windowDimenion, scrollPos]);
+
 	return (
-		<div className={styles.root}>
+		<div ref={rooting} className={styles.root}>
 			<div className={styles.header}>
 				<h3>
 					Tasks
@@ -334,6 +383,6 @@ const TasksBlock = () => {
 			)}
 		</div>
 	);
-};
+});
 
 export default TasksBlock;

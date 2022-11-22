@@ -1,10 +1,12 @@
 .root {
-    padding: 10px;
+    padding: 10px 10px 50px 10px;
     box-sizing: border-box;
     width: 25%;
-    max-height: 100%;
     overflow: auto;
     z-index: 1;
+    /* position: absolute;
+    top:82px;
+    right:0; */
 }
 
 @media (max-width: 1200px) {
@@ -228,17 +230,18 @@ h3 {
     transform: translate(0, -50%);
     opacity: 0;
     display: none;
+
 }
 
 .taskItem:hover > .taskItemBtns {
     opacity: 1;
-    transition: 0.2s;
     display: flex;
 }
 
 .taskItemChecked:hover > .taskItemBtns {
     opacity: 1;
-    transition: 0.2s;
+
+    display:flex;
 }
 
 .taskItemBtns > button {

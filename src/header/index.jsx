@@ -51,6 +51,8 @@ const Header = ({
 		setCustomLongRest(value);
 		setLongRestValue(value);
 	};
+
+	
 	return (
 		<header>
 			<a className={styles.logo} href="#">
@@ -169,7 +171,7 @@ const Header = ({
 					)}
 				</div>
 
-				<button className={styles.restart}>
+				<button onClick={() => handlerRestart()} className={styles.restart}>
 					<svg
 						aria-hidden="true"
 						focusable="false"

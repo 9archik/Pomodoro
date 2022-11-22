@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './header';
 import Pomodoro from './Pomodoro';
-import React from 'react';
+import React, { useRef } from 'react';
 import { useState } from 'react';
 import TasksBlock from './TasksBlock';
 import MusicPlayer from './MusicPlayer';
@@ -22,6 +22,10 @@ function App() {
 		{ name: 'Custom', pomodoro: pomodoroValue, rest: restValue, longRest: longRestValue },
 	]);
 		const [isStart, setIsStart] = useState(false);
+
+		let ref=useRef('ref');
+
+		
 	return (
 		<>
 			<Header
@@ -35,6 +39,7 @@ function App() {
 				setLongRestValue={(longRestValue) => setLongRestValue(longRestValue)}
 				settingsArray={settingsArray}
 				isStart={isStart}
+				setIsStart={(isStart) => setIsStart(isStart)}
 			/>
 			<div className="timer-task">
 				<Pomodoro
@@ -44,12 +49,13 @@ function App() {
 					longRestValue={longRestValue}
 					settingsArray={settingsArray}
 					isStart={isStart}
-					setIsStart={(isStart) =>setIsStart(isStart)}
+					setIsStart={(isStart) => setIsStart(isStart)}
+					ref={ref}
 				/>
-				<TasksBlock />
+				<TasksBlock ref={ref} />
 			</div>
 
-			<MusicPlayer/>
+			<MusicPlayer />
 		</>
 	);
 }

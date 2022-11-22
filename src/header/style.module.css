@@ -78,10 +78,15 @@ button svg {
 @media (max-width:424px) {
     .settings
     {
-        position: fixed;
+       
         top: 53px;
         right:0;
         width:305px;
+    }
+
+    .customize
+    {
+        position: static;
     }
 }
 
