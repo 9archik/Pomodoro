@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useState } from 'react';
 import styles from './style.module.css';
+import { myContext } from '../App';
 const Header = ({
 	level,
 	setLevel,
@@ -13,10 +14,15 @@ const Header = ({
 	settingsArray,
 	isStart,
 }) => {
+	
+	const {  onPauseClick, counterNull } = useContext(myContext);
+	
 	const [customizeIsOpen, setCustomizeIsOpen] = useState(false);
 
 	const [customRest, setCustomRest] = useState(50);
+	
 	const [customLongRest, setCustomLongRest] = useState(50);
+	
 	const [customPom, setCustomPom] = useState(50);
 
 	useEffect(() => {
@@ -52,7 +58,12 @@ const Header = ({
 		setLongRestValue(value);
 	};
 
-	
+	const handlerRestart = () =>
+	{
+		onPauseClick();
+		counterNull();
+	}
+
 	return (
 		<header>
 			<a className={styles.logo} href="#">
