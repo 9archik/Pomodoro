@@ -47,6 +47,7 @@ const TasksBlock = forwardRef((props, ref) => {
 			isNew: true,
 			id: id,
 			cache: '',
+			hover: false,
 		};
 
 		let copy = Object.assign([], storage);
@@ -109,6 +110,24 @@ const TasksBlock = forwardRef((props, ref) => {
 		setStorage(copy);
 	};
 
+	const onHoverTask = (id) => {
+		let copy = Object.assign([], storage);
+		copy.map((elem) => (elem.id === id ? (elem.hover = true) : (elem.hover = false)));
+
+		setStorage(copy);
+
+		console.log(1);
+	};
+
+	const notHoverTask = () => {
+		let copy = Object.assign([], storage);
+		copy.map((elem) => (elem.hover = false));
+
+		setStorage(copy);
+
+		console.log(2);
+	};
+
 	const addToRefs = (el) => {
 		if (el && !inputForm.current.includes(el)) {
 			inputForm.current.push(el);
@@ -123,6 +142,7 @@ const TasksBlock = forwardRef((props, ref) => {
 	};
 
 	const [body, setBody] = useState(document.getElementsByTagName('body'));
+
 	const [windowDimenion, detectHW] = useState({
 		winWidth: window.innerWidth,
 		winHeight: window.innerHeight,
@@ -172,7 +192,10 @@ const TasksBlock = forwardRef((props, ref) => {
 	}, [windowDimenion, scrollPos]);
 
 	return (
-		<div ref={rooting} className={styles.root}>
+		<div
+			ref={rooting}
+			style={headerBtnsPopup ? { minHeight: '250px' } : { minHeight: '0px' }}
+			className={styles.root}>
 			<div className={styles.header}>
 				<h3>
 					Tasks
@@ -193,11 +216,12 @@ const TasksBlock = forwardRef((props, ref) => {
 								fill="currentColor"
 								d="M328 256c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72 72 32.2 72 72zm104-72c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72zm-352 0c-39.8 0-72 32.2-72 72s32.2 72 72 72 72-32.2 72-72-32.2-72-72-72z"
 								data-v-5733519c=""
-								class=""></path>
+								className=""></path>
 						</svg>
 					</button>
 					<ul className={headerBtnsPopup ? styles.popup : styles.popupClose}>
 						<li
+							key={1}
 							onClick={() => {
 								setIsHideTasks(!isHideTasks);
 								setHeaderBtnsPopup(!headerBtnsPopup);
@@ -229,17 +253,18 @@ const TasksBlock = forwardRef((props, ref) => {
 									role="img"
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 576 512"
-									class="svg-inline--fa fa-eye fa-w-18">
+									className="svg-inline--fa fa-eye fa-w-18">
 									<path
 										data-v-60094630=""
 										fill="currentColor"
 										d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z"
-										class=""></path>
+										className=""></path>
 								</svg>
 							)}
 							{!isHideTasks ? 'Hide' : 'Show'} completed tasks
 						</li>
 						<li
+							key={2}
 							onClick={() => {
 								setStorage(() => storage.filter((element) => element.checked));
 								setHeaderBtnsPopup(!headerBtnsPopup);
@@ -263,6 +288,7 @@ const TasksBlock = forwardRef((props, ref) => {
 							Remove to do list
 						</li>
 						<li
+							key={3}
 							onClick={() => {
 								setStorage(() => storage.filter((element) => !element.checked));
 								setHeaderBtnsPopup(!headerBtnsPopup);
@@ -295,7 +321,11 @@ const TasksBlock = forwardRef((props, ref) => {
 					storage.map((element, index) => {
 						if (!(isHideTasks && element.checked))
 							return (
-								<li key={index}>
+								<li
+									onMouseEnter={() => onHoverTask(index)}
+									// onMouseLeave={() => notHoverTask()}
+
+									key={index}>
 									{!element.isEdit && (
 										<>
 											<div className={element.checked ? styles.taskItemChecked : styles.taskItem}>
@@ -309,44 +339,46 @@ const TasksBlock = forwardRef((props, ref) => {
 													{element.info}
 												</label>
 
-												<div className={styles.taskItemBtns}>
-													<button onClick={() => onClickDelete(index)} className={styles.delete}>
-														<svg
-															data-v-e06fc954=""
-															aria-hidden="true"
-															focusable="false"
-															data-prefix="fas"
-															data-icon="trash"
-															role="img"
-															xmlns="http://www.w3.org/2000/svg"
-															viewBox="0 0 448 512"
-															class="text-lg mr-3 pointer-events-none svg-inline--fa fa-trash fa-w-14">
-															<path
+												{element.hover && (
+													<div className={styles.taskItemBtns}>
+														<button onClick={() => onClickDelete(index)} className={styles.delete}>
+															<svg
 																data-v-e06fc954=""
-																fill="currentColor"
-																d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
-																class=""></path>
-														</svg>
-													</button>
-													<button onClick={() => onClickEdit(index)} className={styles.edit}>
-														<svg
-															data-v-e06fc954=""
-															aria-hidden="true"
-															focusable="false"
-															data-prefix="fas"
-															data-icon="pen"
-															role="img"
-															xmlns="http://www.w3.org/2000/svg"
-															viewBox="0 0 512 512"
-															class="text-lg mr-3 pointer-events-none svg-inline--fa fa-pen fa-w-16">
-															<path
+																aria-hidden="true"
+																focusable="false"
+																data-prefix="fas"
+																data-icon="trash"
+																role="img"
+																xmlns="http://www.w3.org/2000/svg"
+																viewBox="0 0 448 512"
+																className="text-lg mr-3 pointer-events-none svg-inline--fa fa-trash fa-w-14">
+																<path
+																	data-v-e06fc954=""
+																	fill="currentColor"
+																	d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+																	className=""></path>
+															</svg>
+														</button>
+														<button onClick={() => onClickEdit(index)} className={styles.edit}>
+															<svg
 																data-v-e06fc954=""
-																fill="currentColor"
-																d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"
-																class=""></path>
-														</svg>
-													</button>
-												</div>
+																aria-hidden="true"
+																focusable="false"
+																data-prefix="fas"
+																data-icon="pen"
+																role="img"
+																xmlns="http://www.w3.org/2000/svg"
+																viewBox="0 0 512 512"
+																className="text-lg mr-3 pointer-events-none svg-inline--fa fa-pen fa-w-16">
+																<path
+																	data-v-e06fc954=""
+																	fill="currentColor"
+																	d="M290.74 93.24l128.02 128.02-277.99 277.99-114.14 12.6C11.35 513.54-1.56 500.62.14 485.34l12.7-114.22 277.9-277.88zm207.2-19.06l-60.11-60.11c-18.75-18.75-49.16-18.75-67.91 0l-56.55 56.55 128.02 128.02 56.55-56.55c18.75-18.76 18.75-49.16 0-67.91z"
+																	className=""></path>
+															</svg>
+														</button>
+													</div>
+												)}
 											</div>
 										</>
 									)}

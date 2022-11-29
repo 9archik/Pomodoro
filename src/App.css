@@ -5,6 +5,12 @@
     font-family: inherit;
 }
 
+#root
+{
+    width: 100%;
+    min-height: 100%;
+}
+
 a:focus,
 input,
 a:active {
@@ -76,9 +82,11 @@ p {
     margin: 0;
     padding: 0;
 }
-.wrapper {
-}
 
+button
+{
+    outline:none;
+}
 
 
 .timer-task {
@@ -95,6 +103,5 @@ p {
     display: flex;
     flex-direction: column;
     max-height: none;
-    min-height:0;
    }
 }

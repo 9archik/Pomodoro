@@ -107,7 +107,7 @@ const Header = ({
 												<span></span>
 											</div>
 
-											<label for={el.name}>
+											<label htmlFor={el.name}>
 												<div className={styles.level}>{el.name}</div>
 												<div className={styles.time}>
 													<span>{el.pomodoro} min</span> &#183; <span>{el.rest} min</span> &#183;{' '}
@@ -126,12 +126,12 @@ const Header = ({
 									<input checked={level === 4 ? 'yes' : ''} name="level" type="radio" id="custom" />
 									<span></span>
 								</div>
-								<label for="" className={styles.custom}>
+								<label htmlFor="" className={styles.custom}>
 									<div className={styles.level}>Custom</div>
 									<ul>
 										<li>
 											<div>
-												<span>{customPom} min</span> <span>Pomidoro</span>
+												<span>{customPom} min</span> <span>Pomodoro</span>
 											</div>
 											<input
 												className={level === 4 ? '' : styles.sliderBlock}
@@ -154,7 +154,6 @@ const Header = ({
 												min="1"
 												max="100"
 												step="1"
-												defaultValue="50"
 												value={customRest}
 												onChange={(events) => level === 4 && setRest(events.target.value)}
 											/>
@@ -170,7 +169,6 @@ const Header = ({
 												min="1"
 												max="100"
 												step="1"
-												defaultValue="50"
 												value={customLongRest}
 												onChange={(events) => level === 4 && setLongRest(events.target.value)}
 											/>

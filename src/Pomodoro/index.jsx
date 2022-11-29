@@ -51,13 +51,13 @@ const Pomodoro = forwardRef(
 				<div className={styles.container}>
 					<h2>Tap to start</h2>
 					<ul className={styles.intervals}>
-						<li>
+						<li key={1}>
 							Pomodoro <span>{pomodoro}</span>
 						</li>
-						<li>
+						<li key={2}>
 							Rest <span>{rest}</span>
 						</li>
-						<li>
+						<li key={3}>
 							Long Rest <span>{longRest}</span>
 						</li>
 					</ul>

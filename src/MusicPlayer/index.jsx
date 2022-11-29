@@ -192,7 +192,7 @@ const MusicPlayer = () => {
 						setVolumeValue(0);
 					}}
 					className={styles.volumeSwitch}>
-					{volumeValue ? <img src={volumeUp} alt="" /> : <img src={volumeOff} alt="" />}
+					{volumeValue !=0 ? <img src={volumeUp} alt="" /> : <img src={volumeOff} alt="" />}
 				</button>
 				<input
 					value={volumeOn ? volumeValue : 0}
