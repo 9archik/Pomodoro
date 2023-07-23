@@ -96,8 +96,8 @@ const TasksBlock = forwardRef((props, ref) => {
 
 	const onClickEdit = (id) => {
 		let copy = Object.assign([], storage);
-		copy.map((elem) => (elem.id === id ? (elem.isEdit = true) : (elem.isEdit = false))),
-			copy[copy.length - 1].isNew && copy.pop();
+		copy.map((elem) => (elem.id === id ? (elem.isEdit = true) : (elem.isEdit = false)));
+		copy[copy.length - 1].isNew && copy.pop();
 		setStorage(copy);
 		setIsAdd(false);
 	};
@@ -148,7 +148,7 @@ const TasksBlock = forwardRef((props, ref) => {
 		winHeight: window.innerHeight,
 	});
 
-	let rooting = useRef(root);
+	let rooting = useRef(null);
 
 	const detectSize = () => {
 		detectHW({
