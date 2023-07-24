@@ -116,7 +116,7 @@ const Header = ({
 											</label>
 										</li>
 									);
-								else <></>;
+								else return <></>;
 							})}
 
 							<li className={styles.customBlock}>

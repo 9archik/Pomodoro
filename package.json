@@ -14,7 +14,7 @@
 		"use-sound": "^4.0.1",
 		"web-vitals": "^2.1.4"
 	},
-	"homepage": "http://9archik.github.io/pomodoro",
+	"homepage": "https://9archik.github.io/pomodoro",
 	"scripts": {
 		"predeploy": "react-scripts build",
 		"deploy": "gh-pages -d build",
